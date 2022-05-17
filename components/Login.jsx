@@ -46,7 +46,7 @@ export default function Login() {
     console.log(user);
     const { photoURL, email, displayName } = user;
 
-    setCurrentUser({
+    await setCurrentUser({
       ...currentUser,
       photo: photoURL,
       email,

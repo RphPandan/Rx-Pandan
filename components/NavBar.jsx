@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -22,7 +22,9 @@ const ResponsiveAppBar = () => {
   const { signOutUser, currentUser } = useAuth();
   const router = useRouter();
 
-  console.log(currentUser?.photoURL);
+  useEffect(() => {
+    console.log("im running");
+  }, [currentUser?.photoURL]);
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -42,6 +44,17 @@ const ResponsiveAppBar = () => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleTest = () => {
+    fetch("/api/hello", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(async (res) => {
+      const data = await res.json();
+      console.log(data);
+    });
   };
 
   return (
@@ -114,6 +127,9 @@ const ResponsiveAppBar = () => {
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <Button onClick={handleTest} variant="contained" color="secondary">
+            <Typography sx={{ color: "main" }}>test</Typography>
+          </Button>
           <Typography
             variant="h5"
             noWrap
@@ -162,11 +178,13 @@ const ResponsiveAppBar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar src={currentUser?.photoURL} />
-              </IconButton>
-            </Tooltip>
+            {currentUser?.photoURL ? (
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar src={currentUser?.photoURL} />
+                </IconButton>
+              </Tooltip>
+            ) : null}
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"

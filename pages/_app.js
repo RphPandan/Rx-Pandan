@@ -5,6 +5,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { AuthProvider } from "../context/AuthContext";
 import theme from "../styles/theme";
 import RouteGuard from "../components/RouteGuard";
+import Link from "next/link";
 
 function MyApp({ Component, pageProps }) {
   return (
