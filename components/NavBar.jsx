@@ -55,7 +55,6 @@ const ResponsiveAppBar = () => {
       const data = await res.json();
       console.log(data);
     });
-    console.log("there is change");
   };
 
   return (
