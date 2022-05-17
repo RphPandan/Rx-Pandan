@@ -12,13 +12,22 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import { useAuth } from "../context/AuthContext";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
-const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Logout"];
 
 const ResponsiveAppBar = () => {
+  const { signOutUser, currentUser } = useAuth();
+  const router = useRouter();
+
+  console.log(currentUser?.photoURL);
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const pages = ["Medications", "Adherence", "Interactions"];
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -39,9 +48,19 @@ const ResponsiveAppBar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <Link href="/">
+            <AdbIcon
+              fontSize="large"
+              sx={{
+                color: "logo.main",
+                display: { xs: "none", md: "flex" },
+                mr: 1,
+              }}
+              onClick={signOutUser}
+            />
+          </Link>
           <Typography
-            variant="h6"
+            variant="h4"
             noWrap
             component="a"
             href="/"
@@ -51,11 +70,11 @@ const ResponsiveAppBar = () => {
               fontFamily: "monospace",
               fontWeight: 700,
               letterSpacing: ".3rem",
-              color: "inherit",
+              color: "logo.main",
               textDecoration: "none",
             }}
           >
-            LOGO
+            Rx Pandan
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -113,22 +132,39 @@ const ResponsiveAppBar = () => {
           >
             LOGO
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              justifyContent: "flex-start",
+              columnGap: 5,
+              alignItems: "center",
+              position: "relative",
+            }}
+          >
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
+              <Link key={page} href={`/${page}`}>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  {page}
+                </Button>
+              </Link>
             ))}
+            {currentUser?.displayName ? (
+              <Typography
+                sx={{ color: "white", position: "absolute", right: 20 }}
+              >
+                {`WELCOME ${currentUser?.displayName}`}
+              </Typography>
+            ) : null}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar src={currentUser?.photoURL} />
               </IconButton>
             </Tooltip>
             <Menu

@@ -15,6 +15,9 @@ export default createTheme({
     warning: {
       main: "#c7d642",
     },
+    logo: {
+      main: "#47da23",
+    },
   },
   typography: {
     fontSize: 14,

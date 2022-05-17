@@ -2,7 +2,9 @@ import "../styles/globals.css";
 import Head from "next/head";
 import Layout from "../components/Layout";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { AuthProvider } from "../context/AuthContext";
 import theme from "../styles/theme";
+import RouteGuard from "../components/RouteGuard";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -18,9 +20,13 @@ function MyApp({ Component, pageProps }) {
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
           />
         </Head>
-        <Layout>
-          <Component {...pageProps} />;
-        </Layout>
+        <AuthProvider>
+          <RouteGuard>
+            <Layout>
+              <Component {...pageProps} />;
+            </Layout>
+          </RouteGuard>
+        </AuthProvider>
       </ThemeProvider>
     </>
   );
