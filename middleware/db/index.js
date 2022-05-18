@@ -1,11 +1,11 @@
-require("dotenv").config();
+require('dotenv').config();
 // require("./events");
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const mongoConnection = (handler) => async (req, res) => {
   if (mongoose.connections[0].readyState) {
     // Use current db connection
-    console.log("already connected to database");
+    console.log('already connected to database');
     return handler(req, res);
   }
   // Use new db connection
@@ -14,8 +14,8 @@ const mongoConnection = (handler) => async (req, res) => {
       useUnifiedTopology: true,
       useNewUrlParser: true,
     })
-    .then((result) => {
-      console.log("connected to database");
+    .then(() => {
+      console.log('connected to database');
     });
   return handler(req, res);
 };

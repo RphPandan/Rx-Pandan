@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+// import PropTypes from 'prop-types';
 
-function Adherence(props) {
-  return <div>Adherence</div>
+function Adherence() {
+  return (<div>Adherence</div>);
 }
 
 Adherence.propTypes = {};

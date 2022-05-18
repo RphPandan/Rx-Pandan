@@ -1,35 +1,35 @@
-import React, { useEffect } from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
-import { useAuth } from "../context/AuthContext";
-import { useRouter } from "next/router";
-import Link from "next/link";
+import React, { useEffect } from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import AdbIcon from '@mui/icons-material/Adb';
+// import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { useAuth } from '../context/AuthContext';
 
-const settings = ["Profile", "Account", "Logout"];
+const settings = ['Profile', 'Account', 'Logout'];
 
-const ResponsiveAppBar = () => {
+function ResponsiveAppBar() {
   const { signOutUser, currentUser } = useAuth();
-  const router = useRouter();
+  // const router = useRouter();
 
   useEffect(() => {
-    console.log("im running");
+    console.log('im running');
   }, [currentUser?.photoURL]);
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  const pages = ["Medications", "Adherence", "Interactions", "Test",];
+  const pages = ['Medications', 'Adherence', 'Interactions', 'Test'];
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -47,7 +47,7 @@ const ResponsiveAppBar = () => {
   };
 
   const handleTest = () => {
-    fetch("/api/patient", {
+    fetch('/api/patient', {
       // headers: {
       //   "Content-Type": "application/json",
       // },
@@ -65,8 +65,8 @@ const ResponsiveAppBar = () => {
             <AdbIcon
               fontSize="large"
               sx={{
-                color: "logo.main",
-                display: { xs: "none", md: "flex" },
+                color: 'logo.main',
+                display: { xs: 'none', md: 'flex' },
                 mr: 1,
               }}
               onClick={signOutUser}
@@ -79,18 +79,18 @@ const ResponsiveAppBar = () => {
             href="/"
             sx={{
               mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "logo.main",
-              textDecoration: "none",
+              letterSpacing: '.3rem',
+              color: 'logo.main',
+              textDecoration: 'none',
             }}
           >
             Rx Pandan
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -105,18 +105,18 @@ const ResponsiveAppBar = () => {
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
+                vertical: 'bottom',
+                horizontal: 'left',
               }}
               keepMounted
               transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
+                vertical: 'top',
+                horizontal: 'left',
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: "block", md: "none" },
+                display: { xs: 'block', md: 'none' },
               }}
             >
               {pages.map((page) => (
@@ -126,9 +126,9 @@ const ResponsiveAppBar = () => {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Button onClick={handleTest} variant="contained" color="secondary">
-            <Typography sx={{ color: "main" }}>test</Typography>
+            <Typography sx={{ color: 'main' }}>test</Typography>
           </Button>
           <Typography
             variant="h5"
@@ -137,13 +137,13 @@ const ResponsiveAppBar = () => {
             href=""
             sx={{
               mr: 2,
-              display: { xs: "flex", md: "none" },
+              display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              fontFamily: "monospace",
+              fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
             }}
           >
             LOGO
@@ -151,18 +151,18 @@ const ResponsiveAppBar = () => {
           <Box
             sx={{
               flexGrow: 1,
-              display: { xs: "none", md: "flex" },
-              justifyContent: "flex-start",
+              display: { xs: 'none', md: 'flex' },
+              justifyContent: 'flex-start',
               columnGap: 5,
-              alignItems: "center",
-              position: "relative",
+              alignItems: 'center',
+              position: 'relative',
             }}
           >
             {pages.map((page) => (
               <Link key={page} href={`/${page}`}>
                 <Button
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
                 >
                   {page}
                 </Button>
@@ -170,7 +170,7 @@ const ResponsiveAppBar = () => {
             ))}
             {currentUser?.displayName ? (
               <Typography
-                sx={{ color: "white", position: "absolute", right: 20 }}
+                sx={{ color: 'white', position: 'absolute', right: 20 }}
               >
                 {`WELCOME ${currentUser?.displayName}`}
               </Typography>
@@ -186,17 +186,17 @@ const ResponsiveAppBar = () => {
               </Tooltip>
             ) : null}
             <Menu
-              sx={{ mt: "45px" }}
+              sx={{ mt: '45px' }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
+                vertical: 'top',
+                horizontal: 'right',
               }}
               keepMounted
               transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
+                vertical: 'top',
+                horizontal: 'right',
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
@@ -212,5 +212,5 @@ const ResponsiveAppBar = () => {
       </Container>
     </AppBar>
   );
-};
+}
 export default ResponsiveAppBar;

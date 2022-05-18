@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { useAuth } from "../../context/AuthContext";
+import React, { useEffect } from 'react';
+// import PropTypes from 'prop-types';
+// import { useAuth } from '../../context/AuthContext';
 
-function Medications(props) {
-  const { currentUser } = useAuth();
+function Medications() {
+  // const { currentUser } = useAuth();
 
   useEffect(() => {}, []);
 

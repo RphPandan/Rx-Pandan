@@ -1,5 +1,5 @@
-import mongoConnection from "../../middleware/db/index.js";
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
+import mongoConnection from '../../middleware/db/index';
 
 const handler = async (req, res) => {
   console.log(mongoose.connections[0].readyState);
@@ -7,7 +7,7 @@ const handler = async (req, res) => {
   //   await mongoose.connection.close();
   // }
 
-  await res.status(200).send({ message: "Rx Pandan" });
+  await res.status(200).send({ message: 'Rx Pandan' });
 };
 
 export default mongoConnection(handler);

@@ -1,31 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import { useAuth } from "../context/AuthContext";
-import { onAuthStateChanged, auth } from "../firebase/config";
-import RedirectPage from "./RedirectPage";
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+// import { useAuth } from '../context/AuthContext';
+import { onAuthStateChanged, auth } from '../firebase/config';
+import RedirectPage from './RedirectPage';
 
 export default function RouteGuard({ children }) {
   const router = useRouter();
   const [authorized, setAuthorized] = useState(true);
-  const { currentUser } = useAuth();
+  // const { currentUser } = useAuth();
 
   function authCheck(url) {
-    const publicPaths = ["/login"];
-    const path = url.split("?")[0];
+    const publicPaths = ['/login'];
+    const path = url.split('?')[0];
 
     onAuthStateChanged(auth, (user) => {
       if (!user && !publicPaths.includes(path)) {
         setTimeout(() => {
           setAuthorized(false);
           router.push({
-            pathname: "/login",
+            pathname: '/login',
             query: { returnUrl: router.asPath },
           });
         }, 500);
       } else if (user && publicPaths.includes(path)) {
         setAuthorized(true);
         router.push({
-          pathname: "/Medications",
+          pathname: '/Medications',
         });
       } else {
         setAuthorized(true);
@@ -36,10 +36,10 @@ export default function RouteGuard({ children }) {
   useEffect(() => {
     authCheck(router.asPath);
 
-    router.events.on("routeChangeComplete", authCheck);
+    router.events.on('routeChangeComplete', authCheck);
 
     return () => {
-      router.events.off("routeChangeComplete", authCheck);
+      router.events.off('routeChangeComplete', authCheck);
     };
     // currentUser
   }, []);
