@@ -2,6 +2,6 @@
   "extends": ["next/core-web-vitals", "airbnb"],
   "rules": {
     "avoidEscape": true,
-    "allowTemplateLiterals": true,
+    "allowTemplateLiterals": true
   }
 }

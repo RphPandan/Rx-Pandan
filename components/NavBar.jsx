@@ -29,7 +29,7 @@ const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  const pages = ["Medications", "Adherence", "Interactions"];
+  const pages = ["Medications", "Adherence", "Interactions", "Test",];
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -47,10 +47,10 @@ const ResponsiveAppBar = () => {
   };
 
   const handleTest = () => {
-    fetch("/api/hello", {
-      headers: {
-        "Content-Type": "application/json",
-      },
+    fetch("/api/patient", {
+      // headers: {
+      //   "Content-Type": "application/json",
+      // },
     }).then(async (res) => {
       const data = await res.json();
       console.log(data);
