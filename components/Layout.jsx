@@ -15,6 +15,7 @@ function Layout({ children }) {
         sx={{
           border: '1px solid red',
           height: '100vh',
+          width: '200vw',
           mt: 5,
           mb: 5,
         }}

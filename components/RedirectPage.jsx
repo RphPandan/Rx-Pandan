@@ -1,5 +1,5 @@
-import React from "react";
-import CircularProgress from "@mui/material/CircularProgress";
+import React from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function RedirectPage() {
   return (
@@ -7,7 +7,7 @@ export default function RedirectPage() {
       <span>Redirecting to login...</span>
       <CircularProgress
         sx={{
-          color: "#AC3B61",
+          color: '#AC3B61',
         }}
         size={100}
       />

@@ -29,7 +29,6 @@ function Copyright(props) {
   );
 }
 
-
 export default function Login() {
   const router = useRouter();
   const { signInUser, setCurrentUser, currentUser } = useAuth();

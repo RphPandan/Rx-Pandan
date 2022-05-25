@@ -1,6 +1,7 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import '../styles/globals.css';
 import Head from 'next/head';
-import {ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import { Provider } from 'react-redux';
 import Layout from '../components/Layout';
 import { AuthProvider } from '../context/AuthContext';
